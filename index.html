@@ -548,17 +548,6 @@
       document.getElementById('product-grid').innerHTML = filtered.map((p, i) => {
         const stars = '⭐'.repeat(Math.floor(p.rating));
 
-        // WhatsApp message (both links)
-        const waMsg = encodeURIComponent(
-          `🛍️ *${p.name}*\n` +
-          `💰 Sirf ₹${p.price} (${p.discount}% OFF!)\n\n` +
-          `🛒 Flipkart se buy karo:\n${p.flipkart_link}\n\n` +
-          `👗 Myntra se buy karo:\n${p.myntra_link}\n\n` +
-          `#DealWearIndia #FlipkartDeals #MyntraFashion`
-        );
-        const tgMsg  = encodeURIComponent(`🛍️ ${p.name} — ₹${p.price} (${p.discount}% OFF!)\n🛒 Flipkart: ${p.flipkart_link}\n👗 Myntra: ${p.myntra_link}`);
-        const twMsg  = encodeURIComponent(`🔥 ${p.name} sirf ₹${p.price} mein! ${p.discount}% discount! #DealWearIndia #FlipkartDeals #MyntraFashion`);
-
         return `
           <div class="card" style="animation-delay:${i * 0.05}s">
             <div class="card-badges">
@@ -593,17 +582,6 @@
                    class="btn-buy btn-mn" onclick="trackClick('${p.name}', 'Myntra')">
                   👗 Myntra
                 </a>
-              </div>
-              <div class="share-row">
-                <a class="share-btn share-wa"
-                   href="https://wa.me/?text=${waMsg}"
-                   target="_blank" onclick="showToast('📱 WhatsApp pe share ho gaya!')">📱 WA</a>
-                <a class="share-btn share-tg"
-                   href="https://t.me/share/url?url=${encodeURIComponent(p.flipkart_link)}&text=${tgMsg}"
-                   target="_blank" onclick="showToast('✈️ Telegram pe share ho gaya!')">✈️ TG</a>
-                <a class="share-btn share-tw"
-                   href="https://twitter.com/intent/tweet?text=${twMsg}"
-                   target="_blank" onclick="showToast('🐦 Twitter pe share ho gaya!')">🐦 TW</a>
               </div>
             </div>
           </div>
