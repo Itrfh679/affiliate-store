@@ -548,11 +548,32 @@
       color: #34D399;
     }
 
+    /* Platform Tag on Cards */
+    .platform-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .platform-tag-flipkart {
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(37, 99, 235, 0.45);
+      color: #93C5FD;
+    }
+    .platform-tag-myntra {
+      background: rgba(255, 63, 108, 0.2);
+      border: 1px solid rgba(255, 63, 108, 0.45);
+      color: #FDA4AF;
+    }
+
     /* Action Buttons (High Urgency) */
-    .cta-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+    .cta-single {
+      width: 100%;
     }
 
     .btn-action {
@@ -560,15 +581,17 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 11px 8px;
+      padding: 12px 10px;
       border-radius: 12px;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 800;
       text-decoration: none;
       color: white;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       cursor: pointer;
+      width: 100%;
+      letter-spacing: 0.3px;
     }
 
     .btn-flipkart {
@@ -680,11 +703,12 @@
   <div class="filter-section">
     <div class="filter-pills">
       <button class="filter-pill active" data-filter="all">✨ All Deals (20)</button>
-      <button class="filter-pill" data-filter="men">👨 Men's Fashion</button>
-      <button class="filter-pill" data-filter="women">👩 Women's Fashion</button>
-      <button class="filter-pill" data-filter="kids">👦 Kids Wear</button>
-      <button class="filter-pill" data-filter="trending">🔥 Trending Now</button>
-      <button class="filter-pill" data-filter="new">⚡ Fresh Drops</button>
+      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart Deals (10)</button>
+      <button class="filter-pill" data-filter="myntra">👗 Myntra Deals (10)</button>
+      <button class="filter-pill" data-filter="men">👨 Men's</button>
+      <button class="filter-pill" data-filter="women">👩 Women's</button>
+      <button class="filter-pill" data-filter="kids">👦 Kids</button>
+      <button class="filter-pill" data-filter="trending">🔥 Trending</button>
     </div>
 
     <div class="product-counter">
@@ -756,7 +780,7 @@
               "priceCurrency": "INR",
               "price": p.price,
               "availability": "https://schema.org/InStock",
-              "url": p.flipkart_link
+              "url": p.buy_link
             },
             "aggregateRating": {
               "@type": "AggregateRating",
@@ -776,6 +800,7 @@
         const matchFilter =
           currentFilter === 'all' ||
           p.category === currentFilter ||
+          p.platform === currentFilter ||
           (currentFilter === 'trending' && p.trending) ||
           (currentFilter === 'new' && p.new);
         const q = searchQuery.toLowerCase();
@@ -784,7 +809,8 @@
           (p.name_hi && p.name_hi.includes(q)) ||
           p.description.toLowerCase().includes(q) ||
           p.tags.some(t => t.includes(q)) ||
-          p.category.includes(q);
+          p.category.includes(q) ||
+          p.platform.includes(q);
         return matchFilter && matchSearch;
       });
 
@@ -797,8 +823,13 @@
       }
 
       document.getElementById('product-grid').innerHTML = filtered.map(p => {
-        // Scarcity psychology stock indicator
-        const stockLeft = ((p.id * 3) % 4) + 2; // Returns 2 to 5 items left
+        const isFk = p.platform === 'flipkart';
+        const storeName = isFk ? 'Flipkart' : 'Myntra';
+        const btnClass = isFk ? 'btn-flipkart' : 'btn-myntra';
+        const btnIcon = isFk ? '🛒' : '👗';
+        const tagClass = isFk ? 'platform-tag-flipkart' : 'platform-tag-myntra';
+        const stockLeft = ((p.id * 3) % 4) + 2;
+
         return `
           <div class="card">
             <div class="card-badges">
@@ -813,7 +844,11 @@
             </div>
 
             <div class="card-body">
-              <div class="card-cat">${getCategoryLabel(p.category)}</div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div class="card-cat">${getCategoryLabel(p.category)}</div>
+                <div class="platform-tag ${tagClass}">${btnIcon} ${storeName}</div>
+              </div>
+
               <div class="card-title">${p.name}</div>
               <div class="card-desc">${p.description}</div>
 
@@ -828,12 +863,9 @@
                 <span class="save-tag">SAVE ₹${p.original_price - p.price}</span>
               </div>
 
-              <div class="cta-group">
-                <a href="${p.flipkart_link}" target="_blank" rel="noopener noreferrer" class="btn-action btn-flipkart">
-                  🛒 Flipkart
-                </a>
-                <a href="${p.myntra_link}" target="_blank" rel="noopener noreferrer" class="btn-action btn-myntra">
-                  👗 Myntra
+              <div class="cta-single">
+                <a href="${p.buy_link}" target="_blank" rel="noopener noreferrer" class="btn-action ${btnClass}">
+                  ${btnIcon} Buy at #1 on ${storeName}
                 </a>
               </div>
             </div>
