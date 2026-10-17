@@ -179,7 +179,7 @@
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border-subtle);
       border-radius: 30px;
-      padding: 10px 18px 10px 42px;
+      padding: 10px 38px 10px 42px;
       color: white;
       font-size: 0.88rem;
       font-family: inherit;
@@ -199,6 +199,66 @@
       top: 50%;
       transform: translateY(-50%);
       opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.16);
+      border: none;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-weight: 800;
+      transition: background 0.2s;
+    }
+    .search-clear:hover {
+      background: #FF5E1E;
+    }
+
+    .quick-search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .quick-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #F59E0B;
+      letter-spacing: 0.4px;
+    }
+
+    .quick-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #E2E8F0;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .quick-tag:hover {
+      background: rgba(255, 94, 30, 0.18);
+      border-color: rgba(255, 94, 30, 0.45);
+      color: #FF8A50;
+      transform: translateY(-1px);
     }
 
     .partner-pill-group {
@@ -674,7 +734,8 @@
 
       <div class="search-wrapper">
         <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search 20+ fashion deals..." />
+        <input type="text" id="search-input" placeholder="Search T-Shirts, Shirts, Kurtis, Men, Women..." autocomplete="off" />
+        <button type="button" id="search-clear-btn" class="search-clear" onclick="clearSearch()" style="display:none;" title="Clear Search">✕</button>
       </div>
 
       <div class="partner-pill-group">
@@ -691,6 +752,17 @@
       <h1>Top Trending Fashion <span class="highlight">At Half Price</span></h1>
       <p>Direct authentic links to Flipkart & Myntra curated daily. Save up to 65% on trending T-Shirts, Shirts & Ethnic Wear.</p>
       
+      <!-- QUICK SEARCH POPULAR TAGS -->
+      <div class="quick-search-bar">
+        <span class="quick-label">⚡ Popular:</span>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('T-Shirt')">👕 T-Shirts</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Shirt')">👔 Shirts</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Kurti')">👗 Kurtis</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Men')">👨 Men</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Women')">👩 Women</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Kids')">👦 Kids</button>
+      </div>
+
       <div class="trust-strip">
         <div class="trust-item"><span class="icon">✓</span> 100% Genuine Stores</div>
         <div class="trust-item"><span class="icon">✓</span> Instant Order Tracking</div>
@@ -701,7 +773,7 @@
   </section>
 
   <!-- FILTER & STATS SECTION -->
-  <div class="filter-section">
+  <div class="filter-section" id="filter-section">
     <div class="filter-pills">
       <button class="filter-pill active" data-filter="all">✨ All Deals (20)</button>
       <button class="filter-pill" data-filter="flipkart">🛒 Flipkart Deals (10)</button>
@@ -806,8 +878,18 @@
       if (el) el.textContent = JSON.stringify(schema);
     }
 
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
     // ===== RENDER PRODUCTS =====
     function renderProducts() {
+      const q = searchQuery.toLowerCase().trim();
+      const cleanQ = q.replace(/[\s\-]/g, '');
+
       let filtered = allProducts.filter(p => {
         const matchFilter =
           currentFilter === 'all' ||
@@ -815,22 +897,65 @@
           p.platform === currentFilter ||
           (currentFilter === 'trending' && p.trending) ||
           (currentFilter === 'new' && p.new);
-        const q = searchQuery.toLowerCase();
-        const matchSearch = !q ||
-          p.name.toLowerCase().includes(q) ||
-          (p.name_hi && p.name_hi.includes(q)) ||
-          p.description.toLowerCase().includes(q) ||
-          p.tags.some(t => t.includes(q)) ||
-          p.category.includes(q) ||
-          p.platform.includes(q);
-        return matchFilter && matchSearch;
+
+        if (!q) return matchFilter;
+
+        const nameLower = p.name.toLowerCase();
+        const descLower = p.description.toLowerCase();
+        const catLower = p.category.toLowerCase();
+        const platLower = p.platform.toLowerCase();
+        const hindiName = (p.name_hi || '').toLowerCase();
+
+        // Fashion synonym intelligence
+        const isTshirt = cleanQ.includes('tshirt') || cleanQ.includes('tee');
+        const isKurti = q.includes('kurti') || q.includes('kurta');
+        const isShirt = cleanQ.includes('shirt') && !isTshirt;
+
+        const matchSynonym =
+          (isTshirt && (nameLower.includes('t-shirt') || nameLower.includes('tshirt') || nameLower.includes('tee'))) ||
+          (isKurti && (nameLower.includes('kurta') || nameLower.includes('kurti') || descLower.includes('kurta'))) ||
+          (isShirt && nameLower.includes('shirt') && !nameLower.includes('t-shirt') && !nameLower.includes('tshirt'));
+
+        const matchDirect =
+          nameLower.includes(q) ||
+          nameLower.replace(/[\s\-]/g, '').includes(cleanQ) ||
+          descLower.includes(q) ||
+          hindiName.includes(q) ||
+          catLower.includes(q) ||
+          platLower.includes(q) ||
+          p.tags.some(t => {
+            const lowT = t.toLowerCase();
+            return lowT.includes(q) || lowT.replace(/[\s\-]/g, '').includes(cleanQ);
+          });
+
+        return matchFilter && (matchDirect || matchSynonym);
       });
 
       document.getElementById('product-count').textContent = filtered.length;
 
       if (!filtered.length) {
-        document.getElementById('product-grid').innerHTML =
-          `<div class="empty-state"><div class="empty-icon">🔍</div><p>No products found for "<strong>${searchQuery}</strong>"</p></div>`;
+        document.getElementById('product-grid').innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1; padding: 40px 18px; text-align: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 20px;">
+            <div class="empty-icon" style="font-size: 2.8rem; margin-bottom: 12px;">👗</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.3rem; color:#FFFFFF; margin-bottom: 8px;">
+              "${escapeHtml(searchQuery)}" is not in our fashion collection
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 18px; line-height: 1.5;">
+              DealWear Luxe is a fashion-only store. We only curate verified <strong>T-Shirts, Shirts & Ethnic Wear</strong>. Try these trending searches:
+            </p>
+            <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 22px;">
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('T-Shirt')">👕 T-Shirts</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Shirt')">👔 Shirts</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Kurti')">👗 Kurtis</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Men')">👨 Men</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Women')">👩 Women</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Kids')">👦 Kids</button>
+            </div>
+            <button onclick="clearSearch()" style="background: linear-gradient(135deg, #FF5E1E, #FF3F6C); border:none; color:white; padding: 12px 24px; border-radius: 12px; font-weight:800; cursor:pointer; font-size:0.88rem; box-shadow: 0 4px 16px rgba(255, 94, 30, 0.4);">
+              ✨ View All 20 Verified Deals
+            </button>
+          </div>
+        `;
         return;
       }
 
@@ -900,10 +1025,54 @@
       });
     });
 
-    // ===== SEARCH INPUT =====
-    document.getElementById('search-input').addEventListener('input', e => {
-      searchQuery = e.target.value.trim();
+    // ===== QUICK SEARCH & INPUT HANDLERS =====
+    const searchInput = document.getElementById('search-input');
+    const searchClearBtn = document.getElementById('search-clear-btn');
+
+    function applyQuickSearch(term) {
+      searchInput.value = term;
+      searchQuery = term.trim();
+      if (searchClearBtn) searchClearBtn.style.display = searchQuery ? 'flex' : 'none';
+
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      const allBtn = document.querySelector('.filter-pill[data-filter="all"]');
+      if (allBtn) allBtn.classList.add('active');
+      currentFilter = 'all';
+
       renderProducts();
+
+      const target = document.getElementById('filter-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function clearSearch() {
+      applyQuickSearch('');
+      searchInput.focus();
+    }
+
+    searchInput.addEventListener('input', e => {
+      searchQuery = e.target.value.trim();
+      if (searchClearBtn) searchClearBtn.style.display = searchQuery ? 'flex' : 'none';
+
+      if (searchQuery) {
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('.filter-pill[data-filter="all"]');
+        if (allBtn) allBtn.classList.add('active');
+        currentFilter = 'all';
+      }
+
+      renderProducts();
+    });
+
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const target = document.getElementById('filter-section');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
 
     // ===== INIT =====
