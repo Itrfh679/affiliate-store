@@ -750,11 +750,22 @@
       }, 1000);
     }
 
+    // ===== AUTO-SHUFFLE ENGINE (FRESH LOOK ON EVERY VISIT) =====
+    function shuffleProducts(arr) {
+      const shuffled = [...arr];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
     // ===== LOAD PRODUCTS =====
     async function loadProducts() {
       try {
         const res = await fetch('products.json?v=' + Date.now());
-        allProducts = await res.json();
+        const rawProducts = await res.json();
+        allProducts = shuffleProducts(rawProducts);
         updateProductSchema(allProducts);
         renderProducts();
       } catch (e) {
