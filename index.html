@@ -6,31 +6,41 @@
 
   <!-- SEO Meta Tags -->
   <title>DealWear India 🇮🇳 | Best T-Shirts & Shirts — Flipkart & Myntra Deals</title>
-  <meta name="description" content="Flipkart & Myntra ke best deals! Men, Women, Kids ke liye stylish t-shirts & shirts 40-60% discount pe. Free delivery available. Shop Now!" />
-  <meta name="keywords" content="flipkart tshirt deals, myntra shirts discount, cheap tshirts india, women shirt online, kids tshirt, graphic tshirt men, best deals shirts, flipkart affiliate, myntra affiliate, online shopping india" />
+  <meta name="description" content="Shop verified T-Shirts & Shirts on Flipkart & Myntra at 40-60% OFF! Men graphic t-shirts, women floral shirts, kids wear under ₹300. Free delivery." />
+  <meta name="keywords" content="flipkart tshirt deals, myntra shirts discount, cheap tshirts india under 300, women shirt online flipkart, kids tshirt sale, graphic tshirt men, oversized tshirt women, formal shirt men myntra, online shopping deals india, flipkart fashion sale, myntra coupons" />
   <meta name="author" content="DealWear India" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://itrfh679.github.io/affiliate-store/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="DealWear India 🔥 | T-Shirts & Shirts — Flipkart & Myntra!" />
   <meta property="og:description" content="Up to 60% OFF on stylish T-Shirts & Shirts for Men, Women & Kids on Flipkart & Myntra!" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://via.placeholder.com/1200x630/2874F0/FFFFFF?text=DealWear+India+%F0%9F%9B%8D+Flipkart+%2B+Myntra" />
+  <meta property="og:url" content="https://itrfh679.github.io/affiliate-store/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1200" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DealWear India 🔥 Best T-Shirt Deals — Flipkart & Myntra!" />
   <meta name="twitter:description" content="Up to 60% OFF. Shop on Flipkart & Myntra via our curated deals!" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1200" />
 
+  <!-- Google Structured Data (Schema.org) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "DealWear India",
-    "url": "https://Itrfh679.github.io/affiliate-store",
-    "description": "Best affiliate deals on T-Shirts and Shirts in India — Flipkart & Myntra"
+    "url": "https://itrfh679.github.io/affiliate-store/",
+    "description": "Best affiliate deals on T-Shirts and Shirts in India — Flipkart & Myntra",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://itrfh679.github.io/affiliate-store/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
+  <script id="products-schema" type="application/ld+json"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -512,11 +522,44 @@
       try {
         const res = await fetch('products.json?v=' + Date.now());
         allProducts = await res.json();
+        updateProductSchema(allProducts);
         renderProducts();
       } catch (e) {
         document.getElementById('product-grid').innerHTML =
           '<div class="no-results"><div class="emoji">😢</div><p>Products load nahi hue. Please refresh karo.</p></div>';
       }
+    }
+
+    // ===== GOOGLE SCHEMA INJECTION =====
+    function updateProductSchema(products) {
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": products.map((p, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Product",
+            "name": p.name,
+            "description": p.description,
+            "image": p.image,
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "INR",
+              "price": p.price,
+              "availability": "https://schema.org/InStock",
+              "url": p.flipkart_link
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": p.rating,
+              "reviewCount": p.reviews
+            }
+          }
+        }))
+      };
+      const el = document.getElementById('products-schema');
+      if (el) el.textContent = JSON.stringify(schema);
     }
 
     // ===== RENDER PRODUCTS =====

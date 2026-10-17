@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itrfh679.github.io/affiliate-store/sitemap.xml
