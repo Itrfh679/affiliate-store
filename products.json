@@ -8,7 +8,12 @@
     "discount": 58,
     "platform": "flipkart",
     "category": "men",
-    "tags": ["men", "tshirt", "graphic", "metronaut"],
+    "tags": [
+      "men",
+      "tshirt",
+      "graphic",
+      "metronaut"
+    ],
     "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Metronaut+Men+Graphic+Print+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.6,
@@ -26,7 +31,12 @@
     "discount": 58,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "shirt", "floral", "tokyo talkies"],
+    "tags": [
+      "women",
+      "shirt",
+      "floral",
+      "tokyo talkies"
+    ],
     "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/tokyo-talkies-tops?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.5,
@@ -44,7 +54,12 @@
     "discount": 60,
     "platform": "flipkart",
     "category": "kids",
-    "tags": ["kids", "children", "tshirt", "max"],
+    "tags": [
+      "kids",
+      "children",
+      "tshirt",
+      "max"
+    ],
     "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Max+Kids+Graphic+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.7,
@@ -62,9 +77,14 @@
     "discount": 58,
     "platform": "myntra",
     "category": "men",
-    "tags": ["men", "tshirt", "solid", "roadster"],
+    "tags": [
+      "men",
+      "tshirt",
+      "solid",
+      "roadster"
+    ],
     "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/tshirts/roadster/the-roadster-lifestyle-co-men-pure-cotton-t-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/roadster-tshirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.4,
     "reviews": 6450,
     "description": "Myntra's all-time #1 highest selling solid crewneck tee. Pure combed cotton daily wear.",
@@ -80,7 +100,12 @@
     "discount": 57,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "kurti", "ethnic", "anubhutee"],
+    "tags": [
+      "women",
+      "kurti",
+      "ethnic",
+      "anubhutee"
+    ],
     "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/anubhutee-kurtas?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
@@ -98,7 +123,12 @@
     "discount": 53,
     "platform": "flipkart",
     "category": "kids",
-    "tags": ["kids", "boys", "polo", "us polo"],
+    "tags": [
+      "kids",
+      "boys",
+      "polo",
+      "us polo"
+    ],
     "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=U.S.+Polo+Assn.+Boys+Polo+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.5,
@@ -116,9 +146,14 @@
     "discount": 57,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "tshirt", "oversized", "here&now"],
+    "tags": [
+      "women",
+      "tshirt",
+      "oversized",
+      "here&now"
+    ],
     "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/tshirts/here%26now/here%26now-women-oversized-cotton-t-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/here-and-now-tshirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.8,
     "reviews": 5120,
     "description": "Myntra top bestseller oversized boxy tee. Aesthetic streetwear boyfriend fit.",
@@ -134,7 +169,12 @@
     "discount": 58,
     "platform": "flipkart",
     "category": "men",
-    "tags": ["men", "shirt", "formal", "peter england"],
+    "tags": [
+      "men",
+      "shirt",
+      "formal",
+      "peter england"
+    ],
     "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Peter+England+Men+Slim+Fit+Formal+Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.6,
@@ -152,7 +192,12 @@
     "discount": 56,
     "platform": "flipkart",
     "category": "men",
-    "tags": ["men", "tshirt", "anime", "bewakoof"],
+    "tags": [
+      "men",
+      "tshirt",
+      "anime",
+      "bewakoof"
+    ],
     "image": "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Bewakoof+Men+Anime+Oversized+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.7,
@@ -170,9 +215,14 @@
     "discount": 57,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "shirt", "striped", "mast harbour"],
+    "tags": [
+      "women",
+      "shirt",
+      "striped",
+      "mast harbour"
+    ],
     "image": "https://images.unsplash.com/photo-1551803091-e20673f15770?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/shirts/mast--harbour/mast--harbour-women-striped-casual-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/mast-and-harbour-shirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.5,
     "reviews": 1640,
     "description": "Myntra exclusive pinstripe casual shirt. Breathable cotton blend with roll-up cuffs.",
@@ -188,7 +238,12 @@
     "discount": 56,
     "platform": "flipkart",
     "category": "kids",
-    "tags": ["kids", "superhero", "tshirt", "flipkart"],
+    "tags": [
+      "kids",
+      "superhero",
+      "tshirt",
+      "flipkart"
+    ],
     "image": "https://images.unsplash.com/photo-1543332164-6e82f355badc?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Kids+Superhero+Action+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.7,
@@ -206,7 +261,12 @@
     "discount": 58,
     "platform": "flipkart",
     "category": "men",
-    "tags": ["men", "shirt", "denim", "highlander"],
+    "tags": [
+      "men",
+      "shirt",
+      "denim",
+      "highlander"
+    ],
     "image": "https://images.unsplash.com/photo-1584865288642-42078afe6942?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Highlander+Men+Slim+Fit+Denim+Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.6,
@@ -224,9 +284,14 @@
     "discount": 55,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "crop", "tshirt", "myntra"],
+    "tags": [
+      "women",
+      "crop",
+      "tshirt",
+      "myntra"
+    ],
     "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/tshirts/street-9/street-9-women-ribbed-crop-t-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/street-9-tshirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.5,
     "reviews": 2350,
     "description": "Myntra top trending crop top. Premium ribbed stretch cotton for flattering silhouette.",
@@ -242,7 +307,12 @@
     "discount": 58,
     "platform": "flipkart",
     "category": "men",
-    "tags": ["men", "shirt", "dennis lingo", "casual"],
+    "tags": [
+      "men",
+      "shirt",
+      "dennis lingo",
+      "casual"
+    ],
     "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Dennis+Lingo+Men+Slim+Fit+Casual+Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.5,
@@ -260,7 +330,12 @@
     "discount": 58,
     "platform": "flipkart",
     "category": "kids",
-    "tags": ["kids", "girls", "hellcat", "tshirt"],
+    "tags": [
+      "kids",
+      "girls",
+      "hellcat",
+      "tshirt"
+    ],
     "image": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Hellcat+Girls+Graphic+Printed+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.8,
@@ -278,9 +353,15 @@
     "discount": 53,
     "platform": "myntra",
     "category": "men",
-    "tags": ["men", "tshirt", "gym", "hrx", "sports"],
+    "tags": [
+      "men",
+      "tshirt",
+      "gym",
+      "hrx",
+      "sports"
+    ],
     "image": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/tshirts/hrx-by-hrithik-roshan/hrx-by-hrithik-roshan-men-rapid-dry-t-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/hrx-tshirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 8420,
     "description": "Myntra's #1 sportswear brand. Rapid-Dry moisture-wicking technology with anti-odor weave.",
@@ -296,7 +377,12 @@
     "discount": 59,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "kurti", "libas", "anarkali"],
+    "tags": [
+      "women",
+      "kurti",
+      "libas",
+      "anarkali"
+    ],
     "image": "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/libas-kurtas?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.7,
@@ -314,7 +400,12 @@
     "discount": 50,
     "platform": "flipkart",
     "category": "kids",
-    "tags": ["kids", "boys", "allen solly", "polo"],
+    "tags": [
+      "kids",
+      "boys",
+      "allen solly",
+      "polo"
+    ],
     "image": "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Allen+Solly+Junior+Boys+Striped+Polo&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.5,
@@ -332,9 +423,14 @@
     "discount": 58,
     "platform": "myntra",
     "category": "men",
-    "tags": ["men", "shirt", "check", "wrogn"],
+    "tags": [
+      "men",
+      "shirt",
+      "check",
+      "wrogn"
+    ],
     "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/shirts/wrogn/wrogn-men-slim-fit-checked-casual-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/wrogn-shirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 3940,
     "description": "Virat Kohli's WROGN #1 checked casual shirt on Myntra. Timeless check twill cotton.",
@@ -350,9 +446,14 @@
     "discount": 55,
     "platform": "myntra",
     "category": "women",
-    "tags": ["women", "tshirt", "v-neck", "dressberry"],
+    "tags": [
+      "women",
+      "tshirt",
+      "v-neck",
+      "dressberry"
+    ],
     "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/tshirts/dressberry/dressberry-women-v-neck-pure-cotton-t-shirt/buy?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.myntra.com/dressberry-tshirts?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.5,
     "reviews": 3310,
     "description": "Myntra everyday essential V-neck tee by DressBerry. 100% combed breathable cotton.",
