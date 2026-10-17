@@ -367,6 +367,7 @@
       position: relative;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
     }
 
     .card:hover {
@@ -831,7 +832,7 @@
         const stockLeft = ((p.id * 3) % 4) + 2;
 
         return `
-          <div class="card">
+          <div class="card" onclick="window.open('${p.buy_link}', '_blank')">
             <div class="card-badges">
               <span class="badge badge-discount">-${p.discount}% OFF</span>
               ${p.trending ? '<span class="badge badge-trending">🔥 TRENDING</span>' : ''}
@@ -864,7 +865,7 @@
               </div>
 
               <div class="cta-single">
-                <a href="${p.buy_link}" target="_blank" rel="noopener noreferrer" class="btn-action ${btnClass}">
+                <a href="${p.buy_link}" target="_blank" rel="noopener noreferrer" class="btn-action ${btnClass}" onclick="event.stopPropagation();">
                   ${btnIcon} Buy at #1 on ${storeName}
                 </a>
               </div>
