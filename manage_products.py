@@ -18,8 +18,9 @@ import sys
 import os
 from datetime import datetime
 
-PRODUCTS_FILE  = os.path.join(os.path.dirname(__file__), "products.json")
-AFFILIATE_ID   = "Itrfh679"
+PRODUCTS_FILE      = os.path.join(os.path.dirname(__file__), "products.json")
+FK_AFFILIATE_ID    = "inf_0244430e-ecdd-4116-a6a6-250786f1b993"
+MYNTRA_AFF_PARAMS  = "utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel"
 
 def load_products():
     with open(PRODUCTS_FILE, "r", encoding="utf-8") as f:
@@ -42,13 +43,18 @@ def add_product():
     orig_price  = int(input("Original price (₹): "))
     category    = input("Category (men/women/kids): ").strip().lower()
     image       = input("Image URL: ").strip()
-    fk_link     = input(f"Flipkart link (affid={AFFILIATE_ID} auto-lagega agar nahi hai): ").strip()
+    fk_link     = input(f"Flipkart link: ").strip()
     mn_link     = input(f"Myntra link: ").strip()
     
-    # Auto-inject affiliate ID into Flipkart link if missing
+    # Auto-inject affiliate ID into Flipkart link
     if "affid=" not in fk_link:
         sep = "&" if "?" in fk_link else "?"
-        fk_link = f"{fk_link}{sep}affid={AFFILIATE_ID}"
+        fk_link = f"{fk_link}{sep}affid={FK_AFFILIATE_ID}"
+    
+    # Auto-inject affiliate ID into Myntra link
+    if "affiliate_id=" not in mn_link:
+        sep = "&" if "?" in mn_link else "?"
+        mn_link = f"{mn_link}{sep}{MYNTRA_AFF_PARAMS}"
     
     rating      = float(input("Rating (1-5): "))
     reviews     = int(input("Review count: "))
