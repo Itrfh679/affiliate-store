@@ -407,7 +407,7 @@
       font-size: 0.95rem;
     }
 
-    /* ===== PRODUCT GRID (LUXURY CARDS) ===== */
+    /* ===== PRODUCT GRID (3D CUBE INWARD ENGINE) ===== */
     .grid {
       max-width: 1280px;
       margin: 10px auto 60px;
@@ -415,16 +415,29 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 22px;
+      perspective: 1300px;
+      perspective-origin: 50% 30%;
+      transform-style: preserve-3d;
     }
 
-    @keyframes cardFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(22px) scale(0.98);
+    @keyframes cubeInward {
+      0% {
+        opacity: 0.1;
+        transform: perspective(1100px) rotateX(-52deg) translateZ(-210px) scale(0.86);
+        transform-origin: center top;
+        filter: brightness(0.55) contrast(1.15);
       }
-      to {
+      65% {
+        opacity: 0.95;
+        transform: perspective(1100px) rotateX(8deg) translateZ(-15px) scale(1.02);
+        transform-origin: center top;
+        filter: brightness(0.95);
+      }
+      100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: perspective(1100px) rotateX(0deg) translateZ(0px) scale(1);
+        transform-origin: center center;
+        filter: brightness(1) contrast(1);
       }
     }
 
@@ -436,17 +449,30 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.4s ease;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
       cursor: pointer;
-      animation: cardFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform, opacity, filter;
+      animation: cubeInward 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
+    /* Staggered Cube Inward Flow */
+    .card:nth-child(8n+1) { animation-delay: 0.03s; }
+    .card:nth-child(8n+2) { animation-delay: 0.08s; }
+    .card:nth-child(8n+3) { animation-delay: 0.13s; }
+    .card:nth-child(8n+4) { animation-delay: 0.18s; }
+    .card:nth-child(8n+5) { animation-delay: 0.23s; }
+    .card:nth-child(8n+6) { animation-delay: 0.28s; }
+    .card:nth-child(8n+7) { animation-delay: 0.33s; }
+    .card:nth-child(8n+8) { animation-delay: 0.38s; }
+
     .card:hover {
-      transform: translateY(-8px);
+      transform: perspective(1100px) rotateX(4deg) translateY(-8px) translateZ(24px);
       border-color: var(--border-hover);
       background: var(--bg-card-hover);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 94, 30, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 28px rgba(255, 94, 30, 0.25);
     }
 
     /* Badges */
@@ -769,7 +795,13 @@
       .partner-pill-group { display: none; }
       .hero-card { padding: 28px 16px; border-radius: 20px; }
       .hero h1 { font-size: 1.6rem; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; padding: 0 14px; }
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+        padding: 0 14px;
+        perspective: 950px;
+        perspective-origin: 50% 25%;
+      }
       .card-img-wrapper { height: 170px; }
       .card-body { padding: 12px; }
       .card-title { font-size: 0.86rem; }
