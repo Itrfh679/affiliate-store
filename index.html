@@ -407,17 +407,33 @@
       font-size: 0.95rem;
     }
 
-    /* ===== PRODUCT GRID (3D CUBE INWARD ENGINE) ===== */
+    /* ===== PRODUCT GRID (RESPONSIVE: DESKTOP 4, LAPTOP 3, TABLET 2, MOBILE 1) ===== */
     .grid {
-      max-width: 1280px;
+      max-width: 1440px;
       margin: 10px auto 60px;
-      padding: 0 20px;
+      padding: 0 24px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 22px;
-      perspective: 1300px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      perspective: 1400px;
       perspective-origin: 50% 30%;
       transform-style: preserve-3d;
+    }
+
+    @media (max-width: 1360px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        padding: 0 16px;
+      }
     }
 
     @keyframes cubeInward {
@@ -789,25 +805,27 @@
     footer p + p { margin-top: 6px; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 680px) {
+    /* ===== MOBILE PHONES (YOUTUBE APP SINGLE-COLUMN FEED) ===== */
+    @media (max-width: 640px) {
       .header-inner { height: 60px; padding: 0 14px; }
       .brand-title { font-size: 1.15rem; }
       .partner-pill-group { display: none; }
-      .hero-card { padding: 28px 16px; border-radius: 20px; }
-      .hero h1 { font-size: 1.6rem; }
+      .hero-card { padding: 26px 14px; border-radius: 20px; }
+      .hero h1 { font-size: 1.55rem; }
       .grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 14px;
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 10px auto 50px;
+        gap: 22px;
         padding: 0 14px;
-        perspective: 950px;
+        perspective: 900px;
         perspective-origin: 50% 25%;
       }
-      .card-img-wrapper { height: 170px; }
-      .card-body { padding: 12px; }
-      .card-title { font-size: 0.86rem; }
-      .price-now { font-size: 1.15rem; }
-      .cta-group { grid-template-columns: 1fr; gap: 6px; }
-      .btn-action { padding: 9px 6px; font-size: 0.78rem; }
+      .card-img-wrapper { height: 260px; }
+      .card-body { padding: 16px; }
+      .card-title { font-size: 1.02rem; }
+      .price-now { font-size: 1.35rem; }
+      .btn-action { padding: 12px 14px; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -1094,56 +1112,7 @@
       const visibleSlice = filtered.slice(0, visibleCount);
       const hasMore = visibleCount < filtered.length;
 
-      const cardsHtml = visibleSlice.map(p => {
-        const isFk = p.platform === 'flipkart';
-        const storeName = isFk ? 'Flipkart' : 'Myntra';
-        const btnClass = isFk ? 'btn-flipkart' : 'btn-myntra';
-        const btnIcon = isFk ? '🛒' : '👗';
-        const tagClass = isFk ? 'platform-tag-flipkart' : 'platform-tag-myntra';
-        const stockLeft = ((p.id * 3) % 4) + 2;
-
-        return `
-          <div class="card" onclick="window.open('${p.buy_link}', '_blank')">
-            <div class="card-badges">
-              <span class="badge badge-discount">-${p.discount}% OFF</span>
-              ${p.trending ? '<span class="badge badge-trending">🔥 TRENDING</span>' : ''}
-              ${p.new ? '<span class="badge badge-new">⚡ NEW</span>' : ''}
-            </div>
-            <div class="stock-tag">⚡ Only ${stockLeft} left</div>
-
-            <div class="card-img-wrapper">
-              <img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&auto=format&fit=crop&q=80';" />
-            </div>
-
-            <div class="card-body">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <div class="card-cat">${getCategoryLabel(p.category)}</div>
-                <div class="platform-tag ${tagClass}">${btnIcon} ${storeName}</div>
-              </div>
-
-              <div class="card-title">${p.name}</div>
-              <div class="card-desc">${p.description}</div>
-
-              <div class="rating-row">
-                <span class="rating-badge">★ ${p.rating}</span>
-                <span class="review-count">(${p.reviews.toLocaleString()} reviews)</span>
-              </div>
-
-              <div class="price-box">
-                <span class="price-now">₹${p.price}</span>
-                <span class="price-was">₹${p.original_price}</span>
-                <span class="save-tag">SAVE ₹${p.original_price - p.price}</span>
-              </div>
-
-              <div class="cta-single">
-                <a href="${p.buy_link}" target="_blank" rel="noopener noreferrer" class="btn-action ${btnClass}" onclick="event.stopPropagation();">
-                  ${btnIcon} Buy at #1 on ${storeName}
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
+      const cardsHtml = visibleSlice.map((p, idx) => generateCardHtml(p, idx)).join('');
 
       let footerHtml = '';
       if (hasMore) {
@@ -1172,6 +1141,98 @@
       }
     }
 
+    // ===== CARD TEMPLATE GENERATOR =====
+    function generateCardHtml(p, animIndex = 0) {
+      const isFk = p.platform === 'flipkart';
+      const storeName = isFk ? 'Flipkart' : 'Myntra';
+      const btnClass = isFk ? 'btn-flipkart' : 'btn-myntra';
+      const btnIcon = isFk ? '🛒' : '👗';
+      const tagClass = isFk ? 'platform-tag-flipkart' : 'platform-tag-myntra';
+      const stockLeft = ((p.id * 3) % 4) + 2;
+      const delay = (animIndex * 0.05).toFixed(2);
+
+      return `
+        <div class="card" style="animation-delay: ${delay}s;" onclick="window.open('${p.buy_link}', '_blank')">
+          <div class="card-badges">
+            <span class="badge badge-discount">-${p.discount}% OFF</span>
+            ${p.trending ? '<span class="badge badge-trending">🔥 TRENDING</span>' : ''}
+            ${p.new ? '<span class="badge badge-new">⚡ NEW</span>' : ''}
+          </div>
+          <div class="stock-tag">⚡ Only ${stockLeft} left</div>
+
+          <div class="card-img-wrapper">
+            <img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&auto=format&fit=crop&q=80';" />
+          </div>
+
+          <div class="card-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div class="card-cat">${getCategoryLabel(p.category)}</div>
+              <div class="platform-tag ${tagClass}">${btnIcon} ${storeName}</div>
+            </div>
+
+            <div class="card-title">${p.name}</div>
+            <div class="card-desc">${p.description}</div>
+
+            <div class="rating-row">
+              <span class="rating-badge">★ ${p.rating}</span>
+              <span class="review-count">(${p.reviews.toLocaleString()} reviews)</span>
+            </div>
+
+            <div class="price-box">
+              <span class="price-now">₹${p.price}</span>
+              <span class="price-was">₹${p.original_price}</span>
+              <span class="save-tag">SAVE ₹${p.original_price - p.price}</span>
+            </div>
+
+            <div class="cta-single">
+              <a href="${p.buy_link}" target="_blank" rel="noopener noreferrer" class="btn-action ${btnClass}" onclick="event.stopPropagation();">
+                ${btnIcon} Buy at #1 on ${storeName}
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ===== LOAD MORE DEALS (APPENDS NEW CARDS ONLY - OLD ONES STAY STABLE) =====
+    function loadMoreDeals() {
+      if (isLoadingMore || visibleCount >= currentFilteredList.length) return;
+      isLoadingMore = true;
+
+      const oldVisibleCount = visibleCount;
+      visibleCount = Math.min(visibleCount + BATCH_SIZE, currentFilteredList.length);
+      const newProducts = currentFilteredList.slice(oldVisibleCount, visibleCount);
+
+      const sentinel = document.getElementById('scroll-sentinel');
+      if (sentinel && newProducts.length > 0) {
+        // Generate cards ONLY for the new slice
+        const newCardsHtml = newProducts.map((p, idx) => generateCardHtml(p, idx)).join('');
+        // Append before sentinel - existing DOM nodes remain untouched and DO NOT re-animate!
+        sentinel.insertAdjacentHTML('beforebegin', newCardsHtml);
+      }
+
+      if (visibleCount < currentFilteredList.length) {
+        if (sentinel) {
+          const textSpan = sentinel.querySelector('.scroll-loading-pill span:last-child');
+          if (textSpan) {
+            textSpan.textContent = `⚡ Loading more deals (${visibleCount} of ${currentFilteredList.length})...`;
+          }
+        }
+        isLoadingMore = false;
+      } else {
+        // All deals loaded
+        if (scrollObserver) scrollObserver.disconnect();
+        if (sentinel) {
+          sentinel.outerHTML = `
+            <div class="end-of-deals">
+              <span>✨ You've viewed all ${currentFilteredList.length} curated fashion deals</span>
+            </div>
+          `;
+        }
+        isLoadingMore = false;
+      }
+    }
+
     // ===== INTERSECTION OBSERVER FOR YOUTUBE-STYLE SCROLL =====
     function setupIntersectionObserver() {
       const sentinel = document.getElementById('scroll-sentinel');
@@ -1182,11 +1243,8 @@
         scrollObserver = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting && !isLoadingMore) {
             if (visibleCount < currentFilteredList.length) {
-              isLoadingMore = true;
               setTimeout(() => {
-                visibleCount += BATCH_SIZE;
-                renderProducts(false);
-                isLoadingMore = false;
+                loadMoreDeals();
               }, 180);
             }
           }
@@ -1199,10 +1257,7 @@
         window.addEventListener('scroll', () => {
           if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400 && !isLoadingMore) {
             if (visibleCount < currentFilteredList.length) {
-              isLoadingMore = true;
-              visibleCount += BATCH_SIZE;
-              renderProducts(false);
-              isLoadingMore = false;
+              loadMoreDeals();
             }
           }
         });
