@@ -417,6 +417,17 @@
       gap: 22px;
     }
 
+    @keyframes cardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -425,9 +436,10 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       cursor: pointer;
+      animation: cardFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .card:hover {
@@ -682,9 +694,63 @@
       padding: 80px 20px;
       color: var(--text-muted);
     }
-    .empty-icon { font-size: 3rem; margin-bottom: 10px; }
+    /* ===== INFINITE SCROLL / LAZY LOAD STYLES ===== */
+    .scroll-sentinel-wrap {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 0 16px;
+      min-height: 64px;
+    }
 
-    /* ===== FOOTER ===== */
+    .scroll-loading-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(255, 94, 30, 0.14), rgba(255, 63, 108, 0.14));
+      border: 1px solid rgba(255, 94, 30, 0.35);
+      padding: 10px 24px;
+      border-radius: 30px;
+      color: #FFFFFF;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .scroll-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #FF5E1E;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .end-of-deals {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 24px 16px 12px;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .end-of-deals span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 20px;
+      border-radius: 20px;
+    }
     footer {
       background: #05080E;
       border-top: 1px solid var(--border-subtle);
@@ -891,8 +957,19 @@
       return div.innerHTML;
     }
 
-    // ===== RENDER PRODUCTS =====
-    function renderProducts() {
+    const INITIAL_BATCH = 8;
+    const BATCH_SIZE = 8;
+    let visibleCount = INITIAL_BATCH;
+    let currentFilteredList = [];
+    let scrollObserver = null;
+    let isLoadingMore = false;
+
+    // ===== RENDER PRODUCTS (YOUTUBE-STYLE PROGRESSIVE SCROLL) =====
+    function renderProducts(resetCount = true) {
+      if (resetCount) {
+        visibleCount = INITIAL_BATCH;
+      }
+
       const q = searchQuery.toLowerCase().trim();
       const cleanQ = q.replace(/[\s\-]/g, '');
 
@@ -950,35 +1027,42 @@
         return matchFilter && (matchDirect || matchSynonym);
       });
 
+      currentFilteredList = filtered;
       document.getElementById('product-count').textContent = filtered.length;
 
+      const gridEl = document.getElementById('product-grid');
+
       if (!filtered.length) {
-        document.getElementById('product-grid').innerHTML = `
+        if (scrollObserver) scrollObserver.disconnect();
+        gridEl.innerHTML = `
           <div class="empty-state" style="grid-column: 1 / -1; padding: 40px 18px; text-align: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 20px;">
             <div class="empty-icon" style="font-size: 2.8rem; margin-bottom: 12px;">👗</div>
             <h3 style="font-family:'Outfit',sans-serif; font-size:1.3rem; color:#FFFFFF; margin-bottom: 8px;">
               "${escapeHtml(searchQuery)}" is not in our fashion collection
             </h3>
             <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 18px; line-height: 1.5;">
-              DealWear Luxe is a fashion-only store. We only curate verified <strong>T-Shirts, Shirts & Ethnic Wear</strong>. Try these trending searches:
+              DealWear Luxe is a fashion-only store. We curate verified <strong>Shoes, Watches, Jeans, Jackets, Sunglasses & Clothing</strong>. Try these trending searches:
             </p>
             <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 22px;">
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Sunglasses')">🕶️ Sunglasses</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Watch')">⌚ Watches</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Shoes')">👟 Shoes</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Jeans')">👖 Jeans</button>
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Jacket')">🧥 Jackets</button>
               <button type="button" class="quick-tag" onclick="applyQuickSearch('T-Shirt')">👕 T-Shirts</button>
-              <button type="button" class="quick-tag" onclick="applyQuickSearch('Shirt')">👔 Shirts</button>
-              <button type="button" class="quick-tag" onclick="applyQuickSearch('Kurti')">👗 Kurtis</button>
-              <button type="button" class="quick-tag" onclick="applyQuickSearch('Men')">👨 Men</button>
-              <button type="button" class="quick-tag" onclick="applyQuickSearch('Women')">👩 Women</button>
-              <button type="button" class="quick-tag" onclick="applyQuickSearch('Kids')">👦 Kids</button>
             </div>
             <button onclick="clearSearch()" style="background: linear-gradient(135deg, #FF5E1E, #FF3F6C); border:none; color:white; padding: 12px 24px; border-radius: 12px; font-weight:800; cursor:pointer; font-size:0.88rem; box-shadow: 0 4px 16px rgba(255, 94, 30, 0.4);">
-              ✨ View All 20 Verified Deals
+              ✨ View All 42 Verified Deals
             </button>
           </div>
         `;
         return;
       }
 
-      document.getElementById('product-grid').innerHTML = filtered.map(p => {
+      const visibleSlice = filtered.slice(0, visibleCount);
+      const hasMore = visibleCount < filtered.length;
+
+      const cardsHtml = visibleSlice.map(p => {
         const isFk = p.platform === 'flipkart';
         const storeName = isFk ? 'Flipkart' : 'Myntra';
         const btnClass = isFk ? 'btn-flipkart' : 'btn-myntra';
@@ -996,7 +1080,7 @@
             <div class="stock-tag">⚡ Only ${stockLeft} left</div>
 
             <div class="card-img-wrapper">
-              <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&auto=format&fit=crop&q=80';" />
+              <img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&auto=format&fit=crop&q=80';" />
             </div>
 
             <div class="card-body">
@@ -1028,6 +1112,69 @@
           </div>
         `;
       }).join('');
+
+      let footerHtml = '';
+      if (hasMore) {
+        footerHtml = `
+          <div id="scroll-sentinel" class="scroll-sentinel-wrap">
+            <div class="scroll-loading-pill">
+              <span class="scroll-spinner"></span>
+              <span>⚡ Loading more deals (${visibleSlice.length} of ${filtered.length})...</span>
+            </div>
+          </div>
+        `;
+      } else {
+        footerHtml = `
+          <div class="end-of-deals">
+            <span>✨ You've viewed all ${filtered.length} curated fashion deals</span>
+          </div>
+        `;
+      }
+
+      gridEl.innerHTML = cardsHtml + footerHtml;
+
+      if (hasMore) {
+        setupIntersectionObserver();
+      } else if (scrollObserver) {
+        scrollObserver.disconnect();
+      }
+    }
+
+    // ===== INTERSECTION OBSERVER FOR YOUTUBE-STYLE SCROLL =====
+    function setupIntersectionObserver() {
+      const sentinel = document.getElementById('scroll-sentinel');
+      if (!sentinel) return;
+      if (scrollObserver) scrollObserver.disconnect();
+
+      if ('IntersectionObserver' in window) {
+        scrollObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && !isLoadingMore) {
+            if (visibleCount < currentFilteredList.length) {
+              isLoadingMore = true;
+              setTimeout(() => {
+                visibleCount += BATCH_SIZE;
+                renderProducts(false);
+                isLoadingMore = false;
+              }, 180);
+            }
+          }
+        }, {
+          rootMargin: '280px 0px'
+        });
+        scrollObserver.observe(sentinel);
+      } else {
+        // Fallback for older browsers
+        window.addEventListener('scroll', () => {
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400 && !isLoadingMore) {
+            if (visibleCount < currentFilteredList.length) {
+              isLoadingMore = true;
+              visibleCount += BATCH_SIZE;
+              renderProducts(false);
+              isLoadingMore = false;
+            }
+          }
+        });
+      }
     }
 
     function getCategoryLabel(cat) {

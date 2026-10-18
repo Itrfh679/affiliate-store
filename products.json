@@ -58,7 +58,9 @@
       "kids",
       "children",
       "tshirt",
-      "max"
+      "max",
+      "tee",
+      "cartoon"
     ],
     "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Max+Kids+Graphic+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
@@ -125,9 +127,11 @@
     "category": "kids",
     "tags": [
       "kids",
+      "children",
       "boys",
       "polo",
-      "us polo"
+      "us polo",
+      "tshirt"
     ],
     "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=U.S.+Polo+Assn.+Boys+Polo+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
@@ -240,6 +244,8 @@
     "category": "kids",
     "tags": [
       "kids",
+      "children",
+      "boys",
       "superhero",
       "tshirt",
       "flipkart"
@@ -332,9 +338,11 @@
     "category": "kids",
     "tags": [
       "kids",
+      "children",
       "girls",
       "hellcat",
-      "tshirt"
+      "tshirt",
+      "tee"
     ],
     "image": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Hellcat+Girls+Graphic+Printed+T-Shirt&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
@@ -402,9 +410,11 @@
     "category": "kids",
     "tags": [
       "kids",
+      "children",
       "boys",
       "allen solly",
-      "polo"
+      "polo",
+      "tshirt"
     ],
     "image": "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Allen+Solly+Junior+Boys+Striped+Polo&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
@@ -545,10 +555,14 @@
     "category": "watches",
     "tags": [
       "watch",
+      "watches",
       "smartwatch",
       "noise",
       "fitness",
-      "calling watch"
+      "calling watch",
+      "men",
+      "women",
+      "unisex"
     ],
     "image": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Noise+ColorFit+Smartwatch&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
@@ -569,10 +583,13 @@
     "category": "watches",
     "tags": [
       "watch",
+      "watches",
       "smartwatch",
       "fastrack",
       "unisex",
-      "fitness"
+      "fitness",
+      "men",
+      "women"
     ],
     "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/fastrack-smart-watches?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
@@ -584,8 +601,8 @@
   },
   {
     "id": 26,
-    "name": "Titan Neo Black Dial Classic Analog Watch",
-    "name_hi": "टाइटन नियो ब्लैक डायल एनालॉग घड़ी",
+    "name": "Titan Neo Classic Ivory Dial Handcrafted Leather Analog Watch",
+    "name_hi": "टाइटन नियो क्लासिक लेदर एनालॉग घड़ी",
     "price": 1895,
     "original_price": 3795,
     "discount": 50,
@@ -593,17 +610,19 @@
     "category": "watches",
     "tags": [
       "watch",
+      "watches",
       "analog",
       "titan",
       "formal",
       "luxury",
-      "men"
+      "men",
+      "leather watch"
     ],
     "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/titan-watches?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.7,
     "reviews": 4910,
-    "description": "Timeless elegance by Titan with mineral glass, stainless steel back and water resistance.",
+    "description": "Timeless elegance by Titan featuring an ivory dial, stainless steel bezel, and handcrafted genuine brown leather strap.",
     "trending": true,
     "new": false
   },
@@ -634,8 +653,8 @@
   },
   {
     "id": 28,
-    "name": "Roadster Men Relaxed Fit Multi-Pocket Cargo Trousers",
-    "name_hi": "रोडस्टर पुरुषों के लिए कार्गो पैंट",
+    "name": "Roadster Men Slim Fit Dark Wash Stretch Denim Jeans",
+    "name_hi": "रोडस्टर पुरुषों के लिए डार्क वॉश जींस",
     "price": 699,
     "original_price": 1699,
     "discount": 58,
@@ -643,24 +662,25 @@
     "category": "jeans",
     "tags": [
       "jeans",
-      "cargos",
-      "trousers",
+      "denim",
       "pants",
+      "trousers",
       "roadster",
-      "men"
+      "men",
+      "dark wash"
     ],
     "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/roadster-trousers?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 5180,
-    "description": "Durable cotton twill utility cargo pants with 6 reinforced pockets.",
+    "description": "Clean dark indigo wash stretch denim with 5-pocket styling, durable stitching and all-day flexible comfort.",
     "trending": true,
     "new": true
   },
   {
     "id": 29,
-    "name": "HRX by Hrithik Roshan Men Warm Fleece Zip Hoodie",
-    "name_hi": "एचआरएक्स पुरुषों के लिए वार्म फ्लीस हुडी",
+    "name": "HRX by Hrithik Roshan Men Warm Fleece Crewneck Sweatshirt",
+    "name_hi": "एचआरएक्स पुरुषों के लिए वार्म फ्लीस स्वेटशर्ट",
     "price": 799,
     "original_price": 1999,
     "discount": 60,
@@ -668,24 +688,26 @@
     "category": "jackets",
     "tags": [
       "jacket",
+      "jackets",
+      "sweatshirt",
       "hoodie",
       "winter",
-      "sweatshirt",
+      "fleece",
       "hrx",
       "men"
     ],
-    "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/hrx-jackets?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 4670,
-    "description": "Plush brushed fleece interior for superior winter warmth and athletic style.",
+    "description": "Plush brushed fleece interior for superior winter warmth, ribbed cuffs and athletic street style.",
     "trending": true,
     "new": true
   },
   {
     "id": 30,
-    "name": "Metronaut Men Solid Casual Winter Bomber Jacket",
-    "name_hi": "मेट्रोनॉट पुरुषों के लिए बॉम्बर जैकेट",
+    "name": "Metronaut Men Classic Black Faux-Leather Biker Jacket",
+    "name_hi": "मेट्रोनॉट पुरुषों के लिए ब्लैक बाइकर जैकेट",
     "price": 849,
     "original_price": 2199,
     "discount": 61,
@@ -693,17 +715,19 @@
     "category": "jackets",
     "tags": [
       "jacket",
-      "bomber",
+      "jackets",
+      "biker",
+      "leather",
       "winter",
       "metronaut",
-      "coat",
+      "black jacket",
       "men"
     ],
     "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Metronaut+Men+Bomber+Jacket&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.5,
     "reviews": 3820,
-    "description": "Wind-resistant shell with ribbed collar, hem, and deep security pockets.",
+    "description": "Wind-resistant sleek black faux leather with zippered pockets, snap-tab collar and quilted shoulder panels.",
     "trending": false,
     "new": true
   },
@@ -759,8 +783,8 @@
   },
   {
     "id": 33,
-    "name": "DressBerry Women Rose Gold Studded Dial Analogue Watch",
-    "name_hi": "ड्रेसबेरी महिलाओं के लिए रोज गोल्ड घड़ी",
+    "name": "DressBerry Women Minimalist Gold Rim Elegant Wristwatch",
+    "name_hi": "ड्रेसबेरी महिलाओं के लिए मिनिमलिस्ट घड़ी",
     "price": 999,
     "original_price": 2499,
     "discount": 60,
@@ -770,23 +794,24 @@
       "watch",
       "watches",
       "women",
-      "rose gold",
+      "minimalist",
       "dressberry",
       "analog",
+      "gold watch",
       "luxury"
     ],
-    "image": "https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/women-watches?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 6120,
-    "description": "Luxury metallic mesh strap with crystal studded bezel. Perfect for parties & daily elegance.",
+    "description": "Ultra-chic slim gold casing with deep contrast dial and comfortable textured woven strap. Perfect for modern chic styling.",
     "trending": true,
     "new": false
   },
   {
     "id": 34,
-    "name": "Zoop by Titan Kids Multi-Function Waterproof Digital Watch",
-    "name_hi": "ज़ूप बाय टाइटन बच्चों के लिए डिजिटल घड़ी",
+    "name": "Zoop by Titan Kids Smart Activity & Digital Sports Watch",
+    "name_hi": "ज़ूप बाय टाइटन बच्चों के लिए डिजिटल स्पोर्ट्स वॉच",
     "price": 695,
     "original_price": 1495,
     "discount": 54,
@@ -799,13 +824,15 @@
       "children",
       "zoop",
       "titan",
-      "digital"
+      "digital",
+      "smartwatch",
+      "sports"
     ],
-    "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Zoop+Kids+Digital+Watch&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.8,
     "reviews": 4280,
-    "description": "Shockproof, water resistant kids watch with backlight, alarm and vibrant soft strap.",
+    "description": "Kid-friendly durable silicone strap, vibrant digital display, splash resistance and fun daily activity tracking.",
     "trending": false,
     "new": true
   },
@@ -850,13 +877,14 @@
       "denim",
       "gini jony",
       "boys",
-      "girls"
+      "girls",
+      "pants"
     ],
-    "image": "https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/kids-jeans?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.6,
     "reviews": 3140,
-    "description": "Super-soft washed denim with elasticated waistband for total play comfort.",
+    "description": "Super-soft washed stretch denim with flexible waistband, designed for active kids and durable all-day play.",
     "trending": false,
     "new": false
   },
@@ -887,8 +915,8 @@
   },
   {
     "id": 38,
-    "name": "Allen Solly Junior Kids Warm Fleece Padded Winter Jacket",
-    "name_hi": "एलन सॉली बच्चों के लिए विंटर जैकेट",
+    "name": "Allen Solly Junior Kids Warm Hooded Weatherproof Winter Jacket",
+    "name_hi": "एलन सॉली बच्चों के लिए हुडेड विंटर जैकेट",
     "price": 899,
     "original_price": 2299,
     "discount": 61,
@@ -900,20 +928,22 @@
       "kids",
       "children",
       "winter",
-      "allen solly"
+      "hooded",
+      "allen solly",
+      "coat"
     ],
-    "image": "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Allen+Solly+Junior+Kids+Jacket&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.7,
     "reviews": 3780,
-    "description": "Water-resistant padded shell with detachable hood and fleece lining.",
+    "description": "Bright yellow hooded windproof winter coat with cozy thermal insulation, deep zip pockets and weather resistance.",
     "trending": false,
     "new": true
   },
   {
     "id": 39,
-    "name": "Vincent Chase by Lenskart Men Polarized Luxury Aviator Sunglasses",
-    "name_hi": "विंसेंट चेस पुरुषों के लिए पोलराइज्ड एविएटर चश्मा",
+    "name": "Vincent Chase by Lenskart Men Polarized Round Sunglasses",
+    "name_hi": "विंसेंट चेस पुरुषों के लिए पोलराइज्ड सनग्लासेस",
     "price": 799,
     "original_price": 1999,
     "discount": 60,
@@ -924,15 +954,15 @@
       "glasses",
       "shades",
       "men",
-      "aviator",
       "polarized",
-      "vincent chase"
+      "vincent chase",
+      "round"
     ],
     "image": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Vincent+Chase+Polarized+Aviator+Sunglasses&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.7,
     "reviews": 8920,
-    "description": "100% UV400 polarized metallic frame with scratch-resistant dark tint lenses.",
+    "description": "100% UV400 dark polarized lenses with premium lightweight matte frame, glare reduction and summer beach styling.",
     "trending": true,
     "new": true
   },
@@ -964,8 +994,8 @@
   },
   {
     "id": 41,
-    "name": "Royal Son Unisex Clubmaster Gold-Rim Retro Sunglasses",
-    "name_hi": "रॉयल सन रेट्रो क्लबमास्टर सनग्लासेस",
+    "name": "Royal Son Unisex Classic Polarized Wayfarer Sunglasses",
+    "name_hi": "रॉयल सन क्लासिक वेफेरर सनग्लासेस",
     "price": 599,
     "original_price": 1499,
     "discount": 60,
@@ -979,19 +1009,20 @@
       "men",
       "women",
       "royal son",
-      "retro"
+      "wayfarer",
+      "polarized"
     ],
     "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.flipkart.com/search?q=Royal+Son+Clubmaster+Sunglasses&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
     "rating": 4.5,
     "reviews": 6340,
-    "description": "Iconic vintage styling with sturdy gold-finish metal bridge and UV400 green glass lenses.",
+    "description": "Iconic Wayfarer silhouette with high-clarity polarized lenses, scratch-resistant finish and 100% UV protection.",
     "trending": false,
     "new": false
   },
   {
     "id": 42,
-    "name": "Zoop Kids Polarized Anti-Glare Flexible UV Sunglasses",
+    "name": "Zoop Kids Flexible Frame Polarized UV400 Sunglasses",
     "name_hi": "ज़ूप बच्चों के लिए फ्लेक्सिबल सनग्लासेस",
     "price": 499,
     "original_price": 1199,
@@ -1005,13 +1036,15 @@
       "kids",
       "children",
       "zoop",
-      "titan"
+      "titan",
+      "baby",
+      "sunglass"
     ],
-    "image": "https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&auto=format&fit=crop&q=80",
+    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&auto=format&fit=crop&q=80",
     "buy_link": "https://www.myntra.com/kids-sunglasses?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
     "rating": 4.8,
     "reviews": 3290,
-    "description": "Unbreakable silicone rubber frame with 100% UV eye protection for young kids.",
+    "description": "Unbreakable kid-friendly flexible frame with 100% UV400 eye protection and comfortable stay-on fit.",
     "trending": false,
     "new": true
   }
