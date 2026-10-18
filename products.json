@@ -1055,7 +1055,7 @@
     "price": 949,
     "original_price": 4500,
     "discount": 79,
-    "platform": "flipkart",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1063,10 +1063,11 @@
       "cologne",
       "luxury",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1512777576244-b846ac3d816f?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.flipkart.com/search?q=hugo+boss+bottled+edt+perfume&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
+    "buy_link": "https://www.amazon.in/s?k=Hugo+Boss+Bottled+Eau+de+Toilette&tag=dealwearluxe-21",
     "rating": 4.8,
     "reviews": 3240,
     "description": "Authentic Hugo Boss Bottled Eau de Toilette with signature woody and spicy warm notes in sleek classic glass flacon.",
@@ -1080,7 +1081,7 @@
     "price": 899,
     "original_price": 4290,
     "discount": 79,
-    "platform": "myntra",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1088,10 +1089,11 @@
       "floral",
       "women",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/carlton-london-escape-perfume?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.amazon.in/s?k=Carlton+London+Escape+Eau+de+Parfum&tag=dealwearluxe-21",
     "rating": 4.7,
     "reviews": 1890,
     "description": "Carlton London Escape long-lasting EDP with fresh floral top notes and delicate rose petals infusion.",
@@ -1105,7 +1107,7 @@
     "price": 999,
     "original_price": 4999,
     "discount": 80,
-    "platform": "flipkart",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1113,10 +1115,11 @@
       "luxury collection",
       "edp",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.flipkart.com/search?q=luxury+miniature+perfume+gift+set&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
+    "buy_link": "https://www.amazon.in/s?k=French+Collection+Luxury+Miniature+Perfume+Set&tag=dealwearluxe-21",
     "rating": 4.9,
     "reviews": 2450,
     "description": "Handcrafted Parisian luxury fragrance discovery set featuring 4 premium Eau de Parfum artisanal glass bottles.",
@@ -1130,7 +1133,7 @@
     "price": 4799,
     "original_price": 9999,
     "discount": 52,
-    "platform": "myntra",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1138,10 +1141,11 @@
       "luxury cologne",
       "edp",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/versace-eros-eau-de-parfum?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.amazon.in/s?k=Versace+Eros+Eau+de+Parfum+100ml&tag=dealwearluxe-21",
     "rating": 4.9,
     "reviews": 5120,
     "description": "Iconic Versace Eros Eau de Parfum with Mediterranean lemon, mint, and tonka bean in embossed turquoise Medusa flacon.",
@@ -1155,7 +1159,7 @@
     "price": 4599,
     "original_price": 9800,
     "discount": 53,
-    "platform": "flipkart",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1163,10 +1167,11 @@
       "sun di gioia",
       "luxury perfume",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.flipkart.com/search?q=giorgio+armani+sun+di+gioia+perfume&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
+    "buy_link": "https://www.amazon.in/s?k=Giorgio+Armani+Eau+de+Parfum&tag=dealwearluxe-21",
     "rating": 4.8,
     "reviews": 1670,
     "description": "Sensual solar fragrance by Giorgio Armani with notes of bergamot, frangipani flower, coconut milk, and amber.",
@@ -1180,17 +1185,18 @@
     "price": 4899,
     "original_price": 10200,
     "discount": 52,
-    "platform": "myntra",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
       "dolce gabbana",
       "the one",
       "men fragrance",
-      "perfumes"
+      "perfumes",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/dolce-and-gabbana-the-one?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.amazon.in/s?k=Dolce+and+Gabbana+The+One+for+Men&tag=dealwearluxe-21",
     "rating": 4.9,
     "reviews": 3890,
     "description": "Sophisticated oriental spicy fragrance by Dolce & Gabbana with magnetic amber, tobacco, and cedarwood notes.",
@@ -1204,7 +1210,7 @@
     "price": 10499,
     "original_price": 20500,
     "discount": 49,
-    "platform": "flipkart",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1212,10 +1218,11 @@
       "luxury perfume",
       "british niche",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1519669011783-4eaa95fa1b7d?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.flipkart.com/search?q=jo+malone+london+nectarine+blossom+honey&affid=inf_0244430e-ecdd-4116-a6a6-250786f1b993",
+    "buy_link": "https://www.amazon.in/s?k=Jo+Malone+London+Cologne&tag=dealwearluxe-21",
     "rating": 5.0,
     "reviews": 1420,
     "description": "Iconic London boutique British luxury scent with succulent nectarine, peach, cassis, and delicate acacia honey.",
@@ -1229,7 +1236,7 @@
     "price": 10999,
     "original_price": 21999,
     "discount": 50,
-    "platform": "myntra",
+    "platform": "amazon",
     "category": "perfumes",
     "tags": [
       "perfume",
@@ -1237,10 +1244,11 @@
       "ultra luxury",
       "haute parfumerie",
       "perfumes",
-      "fragrance"
+      "fragrance",
+      "amazon"
     ],
     "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&auto=format&fit=crop&q=80",
-    "buy_link": "https://www.myntra.com/chanel-coco-noir-perfume?utm_source=ugc_affiliate_meta&utm_medium=fb_affiliate&utm_campaign=8vzbTUu4rnsXPIel&affiliate_id=8vzbTUu4rnsXPIel",
+    "buy_link": "https://www.amazon.in/s?k=Chanel+Coco+Noir+Eau+de+Parfum&tag=dealwearluxe-21",
     "rating": 5.0,
     "reviews": 4190,
     "description": "Ultra-prestigious Chanel Coco Noir oriental luminous magnetic fragrance housed in the legendary jet-black lacquer bottle.",

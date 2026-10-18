@@ -685,6 +685,11 @@
       border: 1px solid rgba(255, 63, 108, 0.45);
       color: #FDA4AF;
     }
+    .platform-tag-amazon {
+      background: rgba(255, 153, 0, 0.2);
+      border: 1px solid rgba(255, 153, 0, 0.45);
+      color: #FFB347;
+    }
 
     /* Action Buttons (High Urgency) */
     .cta-single {
@@ -727,6 +732,19 @@
       background: linear-gradient(135deg, #FB7185 0%, #FF3F6C 100%);
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(255, 63, 108, 0.55);
+    }
+
+    .btn-amazon {
+      background: linear-gradient(135deg, #FF9900 0%, #E67A00 100%);
+      box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
+      color: #0A0F1D !important;
+      font-weight: 800;
+    }
+    .btn-amazon:hover {
+      background: linear-gradient(135deg, #FBBF24 0%, #FF9900 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 153, 0, 0.55);
+      color: #000000 !important;
     }
 
     /* ===== EMPTY STATE ===== */
@@ -894,8 +912,9 @@
   <div class="filter-section" id="filter-section">
     <div class="filter-pills">
       <button class="filter-pill active" data-filter="all">✨ All Deals (50)</button>
-      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (25)</button>
-      <button class="filter-pill" data-filter="myntra">👗 Myntra (25)</button>
+      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (21)</button>
+      <button class="filter-pill" data-filter="myntra">👗 Myntra (21)</button>
+      <button class="filter-pill" data-filter="amazon">📦 Amazon (8)</button>
       <button class="filter-pill" data-filter="perfumes">🧴 Perfumes (8)</button>
       <button class="filter-pill" data-filter="sunglasses">🕶️ Sunglasses</button>
       <button class="filter-pill" data-filter="watches">⌚ Watches</button>
@@ -1149,10 +1168,11 @@
     // ===== CARD TEMPLATE GENERATOR =====
     function generateCardHtml(p, animIndex = 0) {
       const isFk = p.platform === 'flipkart';
-      const storeName = isFk ? 'Flipkart' : 'Myntra';
-      const btnClass = isFk ? 'btn-flipkart' : 'btn-myntra';
-      const btnIcon = isFk ? '🛒' : '👗';
-      const tagClass = isFk ? 'platform-tag-flipkart' : 'platform-tag-myntra';
+      const isAmz = p.platform === 'amazon';
+      const storeName = isFk ? 'Flipkart' : (isAmz ? 'Amazon' : 'Myntra');
+      const btnClass = isFk ? 'btn-flipkart' : (isAmz ? 'btn-amazon' : 'btn-myntra');
+      const btnIcon = isFk ? '🛒' : (isAmz ? '📦' : '👗');
+      const tagClass = isFk ? 'platform-tag-flipkart' : (isAmz ? 'platform-tag-amazon' : 'platform-tag-myntra');
       const stockLeft = ((p.id * 3) % 4) + 2;
       const delay = (animIndex * 0.05).toFixed(2);
 
