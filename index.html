@@ -750,13 +750,14 @@
     <div class="hero-card">
       <div class="hero-badge-vip">⚡ Verified Creator Deals • 2026 Collection</div>
       <h1>Top Trending Fashion <span class="highlight">At Up To 76% OFF</span></h1>
-      <p>Direct authentic links to Flipkart & Myntra curated daily. Save big on trending Shoes, Smartwatches, Jeans, Jackets & Ethnic Wear.</p>
+      <p>Direct authentic links to Flipkart & Myntra curated daily. Save big on trending Sunglasses, Shoes, Smartwatches, Jeans & Jackets.</p>
       
       <!-- QUICK SEARCH POPULAR TAGS -->
       <div class="quick-search-bar">
         <span class="quick-label">⚡ Popular:</span>
-        <button type="button" class="quick-tag" onclick="applyQuickSearch('Shoes')">👟 Shoes</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Sunglasses')">🕶️ Sunglasses</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Watch')">⌚ Watches</button>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Shoes')">👟 Shoes</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Jeans')">👖 Jeans</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Jacket')">🧥 Jackets</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('T-Shirt')">👕 T-Shirts</button>
@@ -775,11 +776,12 @@
   <!-- FILTER & STATS SECTION -->
   <div class="filter-section" id="filter-section">
     <div class="filter-pills">
-      <button class="filter-pill active" data-filter="all">✨ All Deals (30)</button>
-      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (15)</button>
-      <button class="filter-pill" data-filter="myntra">👗 Myntra (15)</button>
-      <button class="filter-pill" data-filter="footwear">👟 Shoes</button>
+      <button class="filter-pill active" data-filter="all">✨ All Deals (42)</button>
+      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (21)</button>
+      <button class="filter-pill" data-filter="myntra">👗 Myntra (21)</button>
+      <button class="filter-pill" data-filter="sunglasses">🕶️ Sunglasses</button>
       <button class="filter-pill" data-filter="watches">⌚ Watches</button>
+      <button class="filter-pill" data-filter="footwear">👟 Shoes</button>
       <button class="filter-pill" data-filter="jeans">👖 Jeans</button>
       <button class="filter-pill" data-filter="jackets">🧥 Jackets</button>
       <button class="filter-pill" data-filter="men">👨 Men's</button>
@@ -789,7 +791,7 @@
     </div>
 
     <div class="product-counter">
-      Showing <span id="product-count">30</span> Curated Deals
+      Showing <span id="product-count">42</span> Curated Deals
     </div>
   </div>
 
@@ -901,6 +903,7 @@
           p.platform === currentFilter ||
           (currentFilter === 'men' && (p.category === 'men' || p.tags.includes('men'))) ||
           (currentFilter === 'women' && (p.category === 'women' || p.tags.includes('women'))) ||
+          (currentFilter === 'kids' && (p.category === 'kids' || p.tags.includes('kids') || p.tags.includes('children'))) ||
           (currentFilter === 'trending' && p.trending) ||
           (currentFilter === 'new' && p.new);
 
@@ -916,11 +919,21 @@
         const isTshirt = cleanQ.includes('tshirt') || cleanQ.includes('tee');
         const isKurti = q.includes('kurti') || q.includes('kurta');
         const isShirt = cleanQ.includes('shirt') && !isTshirt;
+        const isSunglasses = cleanQ.includes('sunglass') || cleanQ.includes('glasses') || cleanQ.includes('shades') || cleanQ.includes('chashma');
+        const isWatch = cleanQ.includes('watch');
+        const isShoes = cleanQ.includes('shoe') || cleanQ.includes('sneaker');
+        const isJeans = cleanQ.includes('jean') || cleanQ.includes('cargo') || cleanQ.includes('trouser');
+        const isJacket = cleanQ.includes('jacket') || cleanQ.includes('hoodie');
 
         const matchSynonym =
           (isTshirt && (nameLower.includes('t-shirt') || nameLower.includes('tshirt') || nameLower.includes('tee'))) ||
           (isKurti && (nameLower.includes('kurta') || nameLower.includes('kurti') || descLower.includes('kurta'))) ||
-          (isShirt && nameLower.includes('shirt') && !nameLower.includes('t-shirt') && !nameLower.includes('tshirt'));
+          (isShirt && nameLower.includes('shirt') && !nameLower.includes('t-shirt') && !nameLower.includes('tshirt')) ||
+          (isSunglasses && (catLower === 'sunglasses' || p.tags.includes('sunglasses'))) ||
+          (isWatch && (catLower === 'watches' || p.tags.includes('watch'))) ||
+          (isShoes && (catLower === 'footwear' || p.tags.includes('shoes'))) ||
+          (isJeans && (catLower === 'jeans' || p.tags.includes('jeans'))) ||
+          (isJacket && (catLower === 'jackets' || p.tags.includes('jacket')));
 
         const matchDirect =
           nameLower.includes(q) ||
@@ -1025,7 +1038,8 @@
         footwear: "Shoes & Sneakers",
         watches: "Watches & Smartwatches",
         jeans: "Jeans & Trousers",
-        jackets: "Jackets & Hoodies"
+        jackets: "Jackets & Hoodies",
+        sunglasses: "Luxury Sunglasses"
       }[cat] || cat;
     }
 
