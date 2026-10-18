@@ -871,6 +871,7 @@
       <!-- QUICK SEARCH POPULAR TAGS -->
       <div class="quick-search-bar">
         <span class="quick-label">⚡ Popular:</span>
+        <button type="button" class="quick-tag" onclick="applyQuickSearch('Perfume')">🧴 Perfumes</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Sunglasses')">🕶️ Sunglasses</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Watch')">⌚ Watches</button>
         <button type="button" class="quick-tag" onclick="applyQuickSearch('Shoes')">👟 Shoes</button>
@@ -892,9 +893,10 @@
   <!-- FILTER & STATS SECTION -->
   <div class="filter-section" id="filter-section">
     <div class="filter-pills">
-      <button class="filter-pill active" data-filter="all">✨ All Deals (42)</button>
-      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (21)</button>
-      <button class="filter-pill" data-filter="myntra">👗 Myntra (21)</button>
+      <button class="filter-pill active" data-filter="all">✨ All Deals (50)</button>
+      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (25)</button>
+      <button class="filter-pill" data-filter="myntra">👗 Myntra (25)</button>
+      <button class="filter-pill" data-filter="perfumes">🧴 Perfumes (8)</button>
       <button class="filter-pill" data-filter="sunglasses">🕶️ Sunglasses</button>
       <button class="filter-pill" data-filter="watches">⌚ Watches</button>
       <button class="filter-pill" data-filter="footwear">👟 Shoes</button>
@@ -907,7 +909,7 @@
     </div>
 
     <div class="product-counter">
-      Showing <span id="product-count">42</span> Curated Deals
+      Showing <span id="product-count">50</span> Curated Deals
     </div>
   </div>
 
@@ -1051,6 +1053,7 @@
         const isShoes = cleanQ.includes('shoe') || cleanQ.includes('sneaker');
         const isJeans = cleanQ.includes('jean') || cleanQ.includes('cargo') || cleanQ.includes('trouser');
         const isJacket = cleanQ.includes('jacket') || cleanQ.includes('hoodie');
+        const isPerfume = cleanQ.includes('perfume') || cleanQ.includes('ittar') || cleanQ.includes('attar') || cleanQ.includes('fragrance') || cleanQ.includes('scent') || cleanQ.includes('cologne');
 
         const matchSynonym =
           (isTshirt && (nameLower.includes('t-shirt') || nameLower.includes('tshirt') || nameLower.includes('tee'))) ||
@@ -1060,7 +1063,8 @@
           (isWatch && (catLower === 'watches' || p.tags.includes('watch'))) ||
           (isShoes && (catLower === 'footwear' || p.tags.includes('shoes'))) ||
           (isJeans && (catLower === 'jeans' || p.tags.includes('jeans'))) ||
-          (isJacket && (catLower === 'jackets' || p.tags.includes('jacket')));
+          (isJacket && (catLower === 'jackets' || p.tags.includes('jacket'))) ||
+          (isPerfume && (catLower === 'perfumes' || p.tags.includes('perfume') || p.tags.includes('perfumes')));
 
         const matchDirect =
           nameLower.includes(q) ||
@@ -1091,9 +1095,10 @@
               "${escapeHtml(searchQuery)}" is not in our fashion collection
             </h3>
             <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 18px; line-height: 1.5;">
-              DealWear Luxe is a fashion-only store. We curate verified <strong>Shoes, Watches, Jeans, Jackets, Sunglasses & Clothing</strong>. Try these trending searches:
+              DealWear Luxe is a fashion-only store. We curate verified <strong>Perfumes, Shoes, Watches, Jeans, Jackets, Sunglasses & Clothing</strong>. Try these trending searches:
             </p>
             <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom: 22px;">
+              <button type="button" class="quick-tag" onclick="applyQuickSearch('Perfume')">🧴 Perfumes</button>
               <button type="button" class="quick-tag" onclick="applyQuickSearch('Sunglasses')">🕶️ Sunglasses</button>
               <button type="button" class="quick-tag" onclick="applyQuickSearch('Watch')">⌚ Watches</button>
               <button type="button" class="quick-tag" onclick="applyQuickSearch('Shoes')">👟 Shoes</button>
@@ -1102,7 +1107,7 @@
               <button type="button" class="quick-tag" onclick="applyQuickSearch('T-Shirt')">👕 T-Shirts</button>
             </div>
             <button onclick="clearSearch()" style="background: linear-gradient(135deg, #FF5E1E, #FF3F6C); border:none; color:white; padding: 12px 24px; border-radius: 12px; font-weight:800; cursor:pointer; font-size:0.88rem; box-shadow: 0 4px 16px rgba(255, 94, 30, 0.4);">
-              ✨ View All 42 Verified Deals
+              ✨ View All 50 Verified Deals
             </button>
           </div>
         `;
@@ -1266,6 +1271,7 @@
 
     function getCategoryLabel(cat) {
       return {
+        perfumes: "Luxury Perfumes",
         men: "Men's Collection",
         women: "Women's Collection",
         kids: "Kids' Collection",
