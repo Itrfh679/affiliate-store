@@ -1,0 +1,6 @@
+# Local bot scripts with private tokens
+visitor_monitor.py
+visitor_history.json
+affiliate_notifier.py
+__pycache__/
+*.pyc
