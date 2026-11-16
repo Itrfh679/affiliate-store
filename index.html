@@ -414,6 +414,13 @@
       transform: translateY(-2px);
     }
 
+    .product-counter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .product-counter {
       font-size: 0.82rem;
       color: var(--text-muted);
@@ -424,6 +431,65 @@
       color: #FF8A50;
       font-weight: 800;
       font-size: 0.95rem;
+    }
+
+    .btn-refresh-feed {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(255, 94, 30, 0.12);
+      border: 1px solid rgba(255, 94, 30, 0.35);
+      color: #FF8A50;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .btn-refresh-feed:hover {
+      background: linear-gradient(135deg, #FF5E1E, #FF3F6C);
+      color: #FFFFFF;
+      border-color: transparent;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(255, 94, 30, 0.4);
+    }
+    .btn-refresh-feed.spinning .refresh-icon {
+      display: inline-block;
+      animation: spinRefresh 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes spinRefresh {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .deal-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(20, 24, 33, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 94, 30, 0.5);
+      color: #FFFFFF;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 94, 30, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .deal-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     /* ===== PRODUCT GRID (RESPONSIVE: DESKTOP 4, LAPTOP 3, TABLET 2, MOBILE 1) ===== */
@@ -976,9 +1042,9 @@
   <div class="filter-section scroll-reveal" id="filter-section">
     <div class="filter-pills">
       <button class="filter-pill active" data-filter="all">✨ All Deals (50)</button>
-      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (21)</button>
-      <button class="filter-pill" data-filter="myntra">👗 Myntra (21)</button>
-      <button class="filter-pill" data-filter="amazon">📦 Amazon (8)</button>
+      <button class="filter-pill" data-filter="flipkart">🛒 Flipkart (17)</button>
+      <button class="filter-pill" data-filter="myntra">👗 Myntra (19)</button>
+      <button class="filter-pill" data-filter="amazon">📦 Amazon (14)</button>
       <button class="filter-pill" data-filter="perfumes">🧴 Perfumes (8)</button>
       <button class="filter-pill" data-filter="sunglasses">🕶️ Sunglasses</button>
       <button class="filter-pill" data-filter="watches">⌚ Watches</button>
@@ -991,8 +1057,14 @@
       <button class="filter-pill" data-filter="trending">🔥 Trending</button>
     </div>
 
-    <div class="product-counter">
-      Showing <span id="product-count">50</span> Curated Deals
+    <div class="product-counter-row">
+      <div class="product-counter">
+        Showing <span id="product-count">50</span> Curated Deals
+      </div>
+      <button id="btn-refresh-feed" class="btn-refresh-feed" onclick="triggerFeedRefresh()" title="Show fresh deals just like YouTube recommendations">
+        <span class="refresh-icon">🔄</span>
+        <span class="refresh-text">Discover New Deals</span>
+      </button>
     </div>
   </div>
 
@@ -1036,7 +1108,34 @@
       }, 1000);
     }
 
-    // ===== AUTO-SHUFFLE ENGINE (FRESH LOOK ON EVERY VISIT) =====
+    // ===== YOUTUBE-STYLE DYNAMIC RECOMMENDATION & SEEN MEMORY ENGINE =====
+    const SEEN_STORAGE_KEY = 'dealwear_seen_history_v2';
+    const MAX_SEEN_HISTORY = 42; // When almost all 50 deals have been seen, prune old ones so it loops fresh
+
+    function getSeenProductIds() {
+      try {
+        const stored = localStorage.getItem(SEEN_STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function recordSeenProductIds(ids) {
+      if (!ids || !ids.length) return;
+      try {
+        let seen = getSeenProductIds();
+        const set = new Set(seen);
+        ids.forEach(id => set.add(id));
+        let updated = Array.from(set);
+        if (updated.length > MAX_SEEN_HISTORY) {
+          // Keep newest 10 items so user gets to discover previously seen ones again later
+          updated = updated.slice(updated.length - 10);
+        }
+        localStorage.setItem(SEEN_STORAGE_KEY, JSON.stringify(updated));
+      } catch (e) {}
+    }
+
     function shuffleProducts(arr) {
       const shuffled = [...arr];
       for (let i = shuffled.length - 1; i > 0; i--) {
@@ -1046,12 +1145,88 @@
       return shuffled;
     }
 
+    // YouTube Algorithm: unseen products placed at the top; seen products placed below
+    function getYouTubeSmartFeed(products) {
+      const seenIds = new Set(getSeenProductIds());
+      const unseen = [];
+      const seen = [];
+
+      for (const p of products) {
+        if (seenIds.has(p.id)) {
+          seen.push(p);
+        } else {
+          unseen.push(p);
+        }
+      }
+
+      // If user has seen almost everything (< 8 unseen left), auto-reset seen history so recommendations never run dry
+      if (unseen.length < 8) {
+        try {
+          localStorage.removeItem(SEEN_STORAGE_KEY);
+        } catch (e) {}
+        return shuffleProducts(products);
+      }
+
+      const freshBatch = shuffleProducts(unseen);
+      const remainingBatch = shuffleProducts(seen);
+      return [...freshBatch, ...remainingBatch];
+    }
+
+    function showDealToast(msg) {
+      let toast = document.getElementById('deal-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'deal-toast';
+        toast.className = 'deal-toast';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+
+    function triggerFeedRefresh() {
+      const btn = document.getElementById('btn-refresh-feed');
+      if (btn) btn.classList.add('spinning');
+
+      // Mark currently visible deals as seen
+      const currentVisibleIds = allProducts.slice(0, visibleCount).map(p => p.id);
+      recordSeenProductIds(currentVisibleIds);
+
+      // Re-compute YouTube smart feed with fresh unseen products at the top
+      allProducts = getYouTubeSmartFeed(allProducts);
+
+      // Mark the new top batch as seen
+      const newTopIds = allProducts.slice(0, INITIAL_BATCH).map(p => p.id);
+      recordSeenProductIds(newTopIds);
+
+      // Render immediately
+      renderProducts(true);
+
+      // Smooth scroll to product grid
+      const gridEl = document.getElementById('product-grid');
+      if (gridEl) {
+        const topPos = gridEl.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+      }
+
+      setTimeout(() => {
+        if (btn) btn.classList.remove('spinning');
+        showDealToast('✨ New fresh deals loaded for you!');
+      }, 500);
+    }
+
     // ===== LOAD PRODUCTS =====
     async function loadProducts() {
       try {
         const res = await fetch('products.json?v=' + Date.now());
         const rawProducts = await res.json();
-        allProducts = shuffleProducts(rawProducts);
+        allProducts = getYouTubeSmartFeed(rawProducts);
+        // Mark top initial batch as seen
+        const topBatchIds = allProducts.slice(0, INITIAL_BATCH).map(p => p.id);
+        recordSeenProductIds(topBatchIds);
         updateProductSchema(allProducts);
         renderProducts();
       } catch (e) {
@@ -1309,6 +1484,7 @@
         const newCardsHtml = newProducts.map((p, idx) => generateCardHtml(p, idx)).join('');
         // Append before sentinel - existing DOM nodes remain untouched and DO NOT re-animate!
         sentinel.insertAdjacentHTML('beforebegin', newCardsHtml);
+        recordSeenProductIds(newProducts.map(p => p.id));
       }
 
       if (visibleCount < currentFilteredList.length) {
@@ -1516,6 +1692,9 @@
     loadProducts();
     setupGeneralScrollObserver();
   </script>
+
+  <!-- Floating Deal Toast Notification -->
+  <div id="deal-toast" class="deal-toast"></div>
 
   <!-- Privacy-Friendly Real-Time Visitor Tracking Pixel -->
   <img src="https://hits.sh/itrfh679.github.io/affiliate-store.svg" alt="Visitor Counter" style="display:none; position:absolute; left:-9999px;" loading="eager" />
